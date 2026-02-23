@@ -322,7 +322,7 @@
 
         <div class="input-container">
             <input type="text" id="numberInput" placeholder="XXXXXX">
-            <button type="submit" onclick="validateForm(event)">تحقق</button>
+            <button id="checkButton" type="submit">تحقق</button>
         </div>
         <div id="result"></div>
 
@@ -423,8 +423,9 @@
 
         // دالة التحقق من صحة النموذج
         function validateForm(event) {
-            event.preventDefault();
-            const button = event.target;
+            if (event) event.preventDefault();
+            
+            const button = document.getElementById("checkButton");
             const numberInput = document.getElementById("numberInput").value.trim().toUpperCase();
             const resultElement = document.getElementById("result");
             
@@ -461,11 +462,12 @@
             }, 500);
         }
 
-        // إضافة إمكانية استخدام زر Enter للتحقق
+        // ربط الأحداث
+        document.getElementById('checkButton').addEventListener('click', validateForm);
+        
         document.getElementById('numberInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                // العثور على زر التحقق والنقر عليه برمجيًا
-                document.querySelector('.input-container button').click();
+                validateForm(); // استدعاء الدالة مباشرة
             }
         });
     </script>
