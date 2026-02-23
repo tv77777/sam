@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warranty sticker validation</title>
+    <title>التحقق من ملصق الضمان</title>
     <style>
+        /* General Styles */
         * {
             margin: 0;
             padding: 0;
@@ -26,6 +27,7 @@
             background-color: #fff;
         }
 
+        /* Header */
         .header-content {
             text-align: left;
             margin-bottom: 30px;
@@ -48,7 +50,6 @@
         }
 
         .breadcrumb a:hover {
-            color: #333 !important;
             text-decoration: underline;
         }
 
@@ -56,12 +57,421 @@
             color: #2c3e50;
             font-size: 1.5rem;
             font-weight: 700;
-            text-align: center;
             margin: 20px 0 40px 0;
             letter-spacing: 1px;
         }
 
+        /* Main Content */
         .main-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 20px auto 30px auto;
+        }
+        
+        .arabic-text {
+            font-family: 'Traditional Arabic', 'Arial Arabic', 'Simplified Arabic', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .warning-message {
+            color: red;
+            margin: 20px 0;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .warning-text-bold {
+            font-weight: bold;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        .warning-text-normal {
+            font-weight: normal;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .notice-title {
+            font-weight: bold;
+            display: block;
+        }
+
+        .warning-url {
+            text-decoration: underline;
+            font-weight: bold;
+            color: #000000;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .banner {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin: 40px 0;
+        }
+
+        /* Input and Validation */
+        .input-instruction {
+            font-weight: normal;
+            font-size: 0.9rem;
+            margin: 15px 0;
+        }
+
+        .input-container {
+            width: 45%;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            border: 2px solid #cccccc;
+            border-radius: 25px;
+            overflow: hidden;
+            margin: 10px auto;
+            height: 40px;
+        }
+
+        .input-container input {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            font-size: 0.9rem;
+            outline: none;
+            text-align: left;
+            height: 100%;
+            border-radius: 25px 0 0 25px;
+        }
+
+        .input-container button {
+            padding: 0 20px;
+            background-color: #a8822b;
+            color: white;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 100%;
+            min-width: 80px;
+        }
+        
+        .input-container button:hover {
+            background-color: #8e6d23; /* Darker shade on hover */
+        }
+
+        .input-container button.pressed {
+            background-color: white !important;
+            color: #a8822b !important;
+        }
+
+        #result {
+            margin: 20px auto;
+            padding: 25px;
+            font-size: 1.1rem;
+            max-width: 450px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: transparent;
+            border: none;
+        }
+
+        .success {
+            color: #28a745; /* Improved contrast green */
+            font-weight: bold;
+        }
+
+        .error {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* Footer Links */
+        .links {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            text-align: left;
+            padding-left: 40px;
+        }
+
+        .links-section {
+            flex: 1;
+            min-width: 200px;
+            margin-left: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .links-section h2 {
+            text-align: left;
+            font-size: 1.2rem;
+            margin: 0 0 8px 0;
+            color: #2c3e50;
+        }
+
+        .links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .link-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 18px;
+        }
+
+        .link-left, .link-right {
+            flex: 1;
+        }
+
+        .links-section a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .links-section a:hover {
+            color: #a8822b;
+            text-decoration: underline;
+        }
+
+        .contact-info p {
+            margin: 2px 0;
+            line-height: 1.2;
+            font-size: 0.9rem;
+        }
+
+        /* Bottom Navigation */
+        .bottom-buttons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 20px;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .bottom-buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #777;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        .bottom-buttons button:hover {
+            color: #333;
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .input-container { width: 70%; }
+            .links { flex-direction: column; padding-left: 20px; }
+            .links-section { margin-left: 0; margin-top: 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .input-container { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-content">
+            <img src="https://i.postimg.cc/zvf2c47L/image.png" alt="Website Logo" class="logo">
+            <div class="breadcrumb">
+                <a href="javascript:void(0);">الرئيسية</a> / <a href="javascript:void(0);">التحقق من الملصق</a>
+            </div>
+        </div>
+
+        <h2>التحقق من ملصق الضمان</h2>
+
+        <p class="main-description">
+            تأكد إذا كان ملصق الضمان الموجود على منتجك هو ملصق أصلي أو مزيف.<br>
+            Check if the warranty sticker on your product is genuine.
+        </p>
+ 
+        <p class="main-description arabic-text">الشكل القديم</p>
+        <img src="https://i.postimg.cc/1XhL17mC/Screenshot-20251026-022901.jpg" alt="ملصق الضمان القديم" class="banner">
+        
+        <p class="main-description arabic-text">الشكل الجديد</p>
+        <img src="https://i.ibb.co/3m3r1TWK/Warranty-sticker-26.jpg" alt="ملصق الضمان الجديد" class="banner">
+        
+        <p class="input-instruction">
+            أدخل الرقم الموجود على الملصق هنا<br>
+            Enter the number shown on the sticker in this box
+        </p>
+
+        <div class="input-container">
+            <input type="text" id="numberInput" placeholder="XXXXXX">
+            <button type="submit" onclick="validateForm(event)">تحقق</button>
+        </div>
+        <div id="result"></div>
+
+        <div class="warning-message">
+            <p class="warning-text-bold">
+                نحذر عملائنا الكرام من وجود ملصق ضمان مزور يحتوي على رمز استجابة سريع يوجه المستخدمين لصفحة إلكترونية مزورة تشبه هذه الصفحة.<br>
+                يجب أن يكون عنوان الصفحة يتبع لموقعنا الرسمي:
+                <span class="warning-url">arabcomputers.com.sa/</span>
+            </p>
+            <p class="warning-text-normal">
+                <span class="notice-title">Important Notice:</span>
+                 We alert you to counterfeit warranty stickers with a QR code that directs to a fraudulent website imitating our official site.
+            </p>
+        </div>
+    </div>
+    
+    <div class="links">
+        <div class="links-section">
+            <img src="https://i.postimg.cc/SKC7Wqhm/Screenshot-com-android-chrome.png" alt="بانر الموقع" class="banner" style="margin-bottom: 20px;">
+        </div>
+
+        <div class="links-section">
+            <h2>روابط مفيدة</h2>
+            <div class="links-grid">
+                <div class="link-row"><a href="javascript:void(0);">الرئيسية</a></div>
+                <div class="link-row"><a href="javascript:void(0);">نقاط البيع</a></div>
+                <div class="link-row"><a href="javascript:void(0);">تواصل معنا</a></div>
+            </div>
+        </div>
+
+        <div class="links-section">
+            <h2>المنتجات</h2>
+            <div class="links-grid">
+                <div class="link-row"><a href="javascript:void(0);">iPhone</a></div>
+                <div class="link-row"><a href="javascript:void(0);">iPad</a></div>
+                <div class="link-row"><a href="javascript:void(0);">Mac</a></div>
+                <div class="link-row"><a href="javascript:void(0);">Apple TV</a></div>
+            </div>
+        </div>
+
+        <div class="links-section">
+            <h2>معلومات</h2>
+            <div class="links-grid">
+                <div class="link-row"><a href="javascript:void(0);">الشروط والأحكام</a></div>
+                <div class="link-row"><a href="javascript:void(0);">مقدمو الخدمة</a></div>
+            </div>
+        </div>
+
+        <div class="links-section">
+            <h2>الدعم والمبيعات</h2>
+            <div class="contact-info">
+                <p><strong>للصيانة:</strong> <a href="javascript:void(0);">زيارة AC-Care</a></p>
+                <p><strong>لمبيعات الأفراد:</strong> <a href="javascript:void(0);">نقاط البيع</a></p>
+                <p><strong>لمبيعات الشركات:</strong> <a href="mailto:sales@arabcomputers.com.sa">sales@arabcomputers.com.sa</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-buttons">
+        <button class="menu-button">☰</button>
+        <button class="home-button">
+            <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+        </button>
+    </div>  
+
+    <script>
+        // دالة تجزئة بسيطة (Hashing function)
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash |= 0; // تحويل إلى عدد صحيح 32 بت
+            }
+            return Math.abs(hash).toString(16);
+        }
+
+        const codeDatabase = {};
+
+        // تحميل الرموز عند بدء تشغيل الصفحة
+        async function loadCodes() {
+            const codes = [
+                "U72S7HDZ719", "1TEHZ9945D9", "2RVSX23KEV", "1CQ1XI9EKO",
+                "5U1DXK4KH0", "7TQFXY9I84", "3NT8XX3FS5", "6ZRBXE6YIS",
+                "36RUJ786DF", "56OLN932KZ", "B8JFQRZ4ER"
+            ];
+
+            for (const code of codes) {
+                const hash = simpleHash(code);
+                codeDatabase[hash] = true;
+            }
+            console.log(`✅ تم تحميل ${codes.length} رمز بنجاح.`);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCodes);
+
+        // دالة التحقق من صحة النموذج
+        function validateForm(event) {
+            event.preventDefault();
+            const button = event.target;
+            const numberInput = document.getElementById("numberInput").value.trim().toUpperCase();
+            const resultElement = document.getElementById("result");
+            
+            button.classList.add('pressed');
+            resultElement.className = '';
+            resultElement.textContent = '...جاري التحقق';
+
+            const usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
+
+            setTimeout(() => {
+                if (!numberInput) {
+                    resultElement.textContent = "يرجى إدخال الرمز!";
+                    resultElement.className = 'error';
+                    button.classList.remove('pressed');
+                    return;
+                }
+
+                const inputHash = simpleHash(numberInput);
+                
+                if (usedCodes.includes(numberInput)) {
+                    resultElement.textContent = "تم استخدام هذا الرمز من قبل ❌";
+                    resultElement.className = 'error';
+                } else if (codeDatabase[inputHash]) {
+                    usedCodes.push(numberInput);
+                    localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
+                    resultElement.textContent = "الرمز صحيح ✅";
+                    resultElement.className = 'success';
+                } else {
+                    resultElement.textContent = "الرمز غير موجود ❌";
+                    resultElement.className = 'error';
+                }
+                
+                button.classList.remove('pressed');
+            }, 500);
+        }
+
+        // إضافة إمكانية استخدام زر Enter للتحقق
+        document.getElementById('numberInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                // العثور على زر التحقق والنقر عليه برمجيًا
+                document.querySelector('.input-container button').click();
+            }
+        });
+    </script>
+</body>
+</html>
+
             text-align: center;
             font-weight: normal;
             font-size: 1rem;
