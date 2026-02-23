@@ -57,7 +57,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
-            margin: 20px 0;
+            margin: 20px 0 40px 0;
             letter-spacing: 1px;
         }
 
@@ -67,7 +67,7 @@
             font-size: 1rem;
             line-height: 1.8;
             max-width: 800px;
-            margin: 0 auto 30px auto;
+            margin: 20px auto 30px auto; /* تقليل المسافة العلوية */
         }
         
         .arabic-text {
@@ -79,7 +79,7 @@
         
         .warning-message {
             color: red;
-            margin: 25px 0;
+            margin: 20px 0; /* تقليل المسافة */
             padding: 0;
             text-align: center;
             font-size: 0.9rem;
@@ -114,7 +114,7 @@
             width: 100%;
             max-height: 200px;
             object-fit: cover;
-            margin-bottom: 15px;
+            margin: 40px 0;
         }
 
         .input-instruction {
@@ -352,42 +352,55 @@
             </div>
         </div>
 
-        <h2>Warranty sticker validation</h2>
-
-        <div class="warning-message">
-            <p class="warning-text-bold">
-                <img src="https://i.postimg.cc/66D66Vst/Warning-tag-A.png" alt="Website Banner" class="banner">
-                نحذر عملائنا الكرام من وجود ملصق ضمان مزور يحتوي على رمز إستجابة سريع يوجه المستخدمين لصفحة إلكترونية مزورة تشبه هذه الصفحة.<br>
-                تأكد دائمًا من عنوان الصفحة الصحيح:
-                <span class="warning-url">arabcombuter.com.sa/check-sticker</span>
-            </p>
-            <p class="warning-text-normal">
-                <span class="notice-title">Important Notice to Our Valued Customers:</span>
-                We would like to alert you to the presence of counterfeit warranty stickers featuring a QR code that directs users to a fraudulent website designed to imitate the official Arab Computers website.<br>
-                <br>
-            </p>
-        </div>
+            <h2>Warranty sticker validation</h2>
 
         <p class="main-description">
-            Check if the warranty sticker on your product is genuine and protect yourself from fake sticker.<br>
-            <span class="arabic-text">تأكد إذا كان ملصق الضمان الموجود على منتجك هو ملصق أصلي أو مزيف</span>
+            Check if the warranty sticker on your product is genuine.<br>
+            تأكد إذا كان ملصق الضمان الموجود على منتجك هو ملصق أصلي أو مزيف
+          </p>
+ 
+            <span class="arabic-text">الشكل القديم </span>
+     
         </p>
 
         <img src="https://i.postimg.cc/1XhL17mC/Screenshot-20251026-022901.jpg" alt="Website Banner" class="banner">
+<p class="main-description">
+        <span class="arabic-text">الشكل الجديد</span>
+     
+        </p>
 
+        <img src="https://i.ibb.co/3m3r1TWK/Warranty-sticker-26.jpg" alt="Website Banner" class="banner">
+        
         <p class="input-instruction">
             Enter the number shown on the sticker in this box<br>
-            أدخل الرقم الموجود على الملصق هنا    
+            أدخل الرقم الموجود على الملصق هنا   
         </p>
+
 
         <div class="input-container">
             <input type="text" id="numberInput" placeholder="XXXXXX">
             <button type="submit" onclick="validateForm(event)">Check</button>
+       
+            <button type="submit" onclick="validateForm(event)">Check</button>
         </div>
 
+        <!-- The result div is now here, right after the input container -->
         <div id="result"></div>
-    </div>
 
+        <!-- The warning message is now after the result -->
+        <div class="warning-message">
+            <p class="warning-text-bold">
+                نحذر عملائنا الكرام من وجود ملصق ضمان مزور يحتوي على رمز إستجابة سريع يوجه المستخدمين لصفحة إلكترونية مزورة تشبه هذه الصفحة.<br>
+                يجب أن يكون عنوان الصفحة يتبع لعنوان موقعنا الرسمي:
+                <span class="warning-url">arabcomputers.com.sa/</span>
+            </p>
+            <p class="warning-text-normal">
+                <span class="notice-title">Important Notice to Our Valued Customers:</span>
+                 We would like to alert you to the presence of counterfeit warranty stickers featuring a QR code that directs users to a fraudulent website designed to imitate the official Arab Computers website.<br>
+            </p>
+        </div>
+    </div>
+    
     <div class="bottom-buttons">
         <button class="menu-button">☰</button>
         <button class="home-button">
@@ -395,12 +408,12 @@
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="none" stroke="currentColor" stroke-width="2"/>
             </svg>
         </button>
-    </div>
+    </div>  
 
     <div class="links">
         <div class="left-section">
             <div>
-                <img src="https://i.postimg.cc/SKC7Wqhm/Screenshot-com-android-chrome.png" alt="بانر الموقع" class="banner">
+                <img src="https://i.postimg.cc/SKC7Wqhm/Screenshot-com-android-chrome.png" alt="بانر الموقع" class="banner" style="margin-bottom: 20px;"> <!-- إضافة مسافة تحت الصورة -->
             </div>
         </div>
 
@@ -446,4 +459,99 @@
         <div class="links-section">
             <h2>Information</h2>
             <div class="links-grid">
-                <div class="link-row"
+                <div class="link-row">
+                    <div class="link-left"><a href="#">Learn How</a></div>
+                    <div class="link-right"><a href="#">Terms and condition</a></div>
+                </div>
+                <div class="link-row">
+                    <div class="link-left"><a href="#">Service Providers</a></div>
+                    <div class="link-right"><a href="#">Condition</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support and Sales Section -->
+        <div class="links-section">
+            <h2>Support and Sales</h2>
+            <div class="contact-info">
+                <p><strong>For Maintenance:</strong></p>
+                <p><a href="#">Visit AC-Care</a></p>
+                
+                <p><strong>For Individual Sales:</strong></p>
+                <p><a href="#">Point of Sales</a></p>
+                
+                <p><strong>For corporate or channels sales:</strong></p>
+                <p><a href="mailto:sales@arabcomputers.com.sa">sales@arabcomputers.com.sa</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // دالة تجزئة سريعة وفعالة
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // تحويل إلى عدد صحيح 32 بت
+            }
+            return Math.abs(hash).toString(16);
+        }
+
+        // قاعدة بيانات الرموز باستخدام التجزئة
+        const codeDatabase = {};
+
+        // تحميل الرموز على دفعات
+        async function loadCodesInBatches() {
+            console.log("بدء تحميل الرموز...");
+
+            
+            // تقسيم الرموز إلى دفعات (يمكنك إضافة المزيد من الرموز هنا)
+            const batches = [
+                // الدفعة 1 - الرموز الأصلية من الكود
+                
+           ["U72S7HDZ719","1TEHZ9945D9",
+"2RVSX23KEV",
+// ... (rest of the codes)
+            ]
+            ];
+
+            for (const batch of batches) {
+                for (const code of batch) {
+                    const hashedCode = simpleHash(code);
+                    codeDatabase[hashedCode] = true;
+                }
+                await new Promise(resolve => setTimeout(resolve, 0));
+            }
+            console.log("تم تحميل جميع الرموز.");
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            const numberInput = document.getElementById('numberInput').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('result');
+            
+            if (!numberInput) {
+                resultDiv.textContent = 'Please enter a code - الرجاء إدخال رمز';
+                resultDiv.className = 'error';
+                return;
+            }
+
+            const hashedInput = simpleHash(numberInput);
+
+            if (codeDatabase[hashedInput]) {
+                resultDiv.textContent = 'Sticker is genuine - الملصق أصلي';
+                resultDiv.className = 'success';
+            } else {
+                resultDiv.textContent = 'Sticker is not genuine - الملصق غير أصلي';
+                resultDiv.className = 'error';
+            }
+        }
+
+        // تحميل الرموز عند بدء تشغيل الصفحة
+        loadCodesInBatches();
+    </script>
+</body>
+</html>
+
+
