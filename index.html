@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة تخمين الرقم | Number Guessing Game</title>
+    <title>Warranty sticker validation</title>
     <style>
         * {
             margin: 0;
@@ -12,498 +12,651 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .game-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 600px;
-            width: 100%;
-            padding: 40px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .header {
+            font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #fff;
+        }
+
+        .header-content {
+            text-align: left;
             margin-bottom: 30px;
         }
 
-        .game-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            color: #667eea;
-            font-size: 2rem;
+        .logo {
+            width: 100px;
             margin-bottom: 10px;
         }
 
-        .subtitle {
-            color: #666;
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #777;
+            margin: 10px 0 15px 0;
+        }
+
+        .breadcrumb a {
+            color: #000 !important;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #333 !important;
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 20px 0 40px 0;
+            letter-spacing: 1px;
+        }
+
+        .main-description {
+            text-align: center;
+            font-weight: normal;
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 20px auto 30px auto; /* تقليل المسافة العلوية */
+        }
+        
+        .arabic-text {
+            font-family: 'Traditional Arabic', 'Arial Arabic', 'Simplified Arabic', sans-serif;
+            font-size: 1rem;
+            direction: rtl;
+            display: inline-block;
+        }
+        
+        .warning-message {
+            color: red;
+            margin: 20px 0; /* تقليل المسافة */
+            padding: 0;
+            text-align: center;
             font-size: 0.9rem;
         }
 
-        .stats {
+        .warning-text-bold {
+            font-weight: bold;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        .warning-text-normal {
+            font-weight: normal;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .notice-title {
+            font-weight: bold;
+            display: block;
+        }
+
+        .warning-url {
+            text-decoration: underline;
+            font-weight: bold;
+            color: #000000;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .banner {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin: 40px 0;
+        }
+
+        .input-instruction {
+            text-align: center;
+            font-weight: normal;
+            font-size: 0.9rem;
+            margin: 15px 0;
+        }
+
+        .input-container {
+            width: 45%;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            border: 2px solid #cccccc;
+            border-radius: 25px 0 0 25px;
+            overflow: hidden;
+            margin: 10px auto;
+            height: 40px;
+        }
+
+        .input-container input {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            font-size: 0.9rem;
+            outline: none;
+            border-radius: 25px 0 0 25px;
+            text-align: left;
+            height: 100%;
+        }
+
+        .input-container button {
+            padding: 0 20px;
+            background-color: #a8822b;
+            color: white;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 100%;
+            border-radius: 0;
+            min-width: 80px;
+        }
+
+        .input-container button.pressed {
+            background-color: white !important;
+            color: #a8822b !important;
+        }
+
+        #result {
+            margin: 20px auto;
+            padding: 25px;
+            font-size: 1.1rem;
+            max-width: 450px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: transparent;
+            border: none;
+        }
+
+        .success {
+            color: #90EE90;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .links {
             display: flex;
             justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            margin-top: 20px;
+            text-align: left;
+            padding-left: 40px;
         }
 
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 15px;
+        .links-section {
             flex: 1;
-            text-align: center;
-            transition: transform 0.3s;
+            margin-left: 15px;
+            text-align: left;
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            margin-bottom: 5px;
-        }
-
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .message-area {
-            background: #f7f7f7;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: center;
-            border-right: 4px solid #667eea;
-        }
-
-        .message {
+        .links-section h2 {
+            text-align: left;
             font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 10px;
+            margin: 0 0 8px 0;
+            color: #2c3e50;
         }
 
-        .hint {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .input-area {
-            margin-bottom: 25px;
-        }
-
-        .guess-input {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s;
-            font-family: monospace;
-            font-size: 1.3rem;
-        }
-
-        .guess-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .buttons {
+        .links-grid {
             display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
+            flex-direction: column;
+            gap: 2px;
         }
 
-        button {
+        .link-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 18px;
+        }
+
+        .link-left {
+            text-align: left;
             flex: 1;
-            padding: 12px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
         }
 
-        .btn-guess {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .link-right {
+            text-align: left;
+            flex: 1;
+            padding-left: 5px;
+            margin-left: -40px;
         }
 
-        .btn-guess:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-reset {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        .btn-reset:hover {
-            transform: translateY(-2px);
-            background: #ff5252;
-        }
-
-        .history {
-            background: #f7f7f7;
-            border-radius: 15px;
-            padding: 15px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .history-title {
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .history-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .history-item {
-            padding: 8px;
-            margin: 5px 0;
-            background: white;
-            border-radius: 8px;
-            text-align: center;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .history-item.high {
-            border-right: 3px solid #ff6b6b;
-            color: #ff6b6b;
-        }
-
-        .history-item.low {
-            border-right: 3px solid #51cf66;
-            color: #51cf66;
-        }
-
-        .history-item.success {
-            border-right: 3px solid #ffd93d;
-            color: #ffd93d;
-            font-weight: bold;
-        }
-
-        .range-info {
-            text-align: center;
-            margin-top: 15px;
-            color: #666;
+        .links-section a {
+            color: #333;
+            text-decoration: none;
             font-size: 0.9rem;
+        }
+
+        .links-section a:hover {
+            color: #a8822b;
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            margin-top: 6px;
+        }
+
+        .contact-info p {
+            margin: 2px 0;
+            line-height: 1.2;
+            font-size: 0.9rem;
+        }
+
+        .bottom-buttons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 20px;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .bottom-buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #777;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .bottom-buttons button:hover {
+            color: #333;
+        }
+
+        .home-button {
+            margin-left: 20px;
+        }
+
+        .menu-button {
+            margin-right: 20px;
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: #777;
+            stroke-width: 2;
+            transition: stroke 0.3s ease;
+        }
+
+        .home-button:hover .home-icon {
+            stroke: #333;
         }
 
         @media (max-width: 768px) {
-            .game-container {
-                padding: 25px;
+            .input-container {
+                width: 70%;
             }
             
-            h1 {
-                font-size: 1.5rem;
+            .input-container button {
+                padding: 12px 20px;
             }
-            
-            .stat-value {
-                font-size: 1.2rem;
-            }
-            
-            .buttons {
+
+            .links {
                 flex-direction: column;
+                padding-left: 20px;
+            }
+
+            .links-section {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            .link-right {
+                margin-left: 0;
+                text-align: center;
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .input-container {
+                width: 90%;
+            }
+            
+            .input-container button {
+                padding: 10px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <div class="header">
-            <div class="game-icon">🎮</div>
-            <h1>لعبة تخمين الرقم</h1>
-            <div class="subtitle">Number Guessing Game</div>
-        </div>
-
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-label">المحاولات</div>
-                <div class="stat-value" id="attempts">0</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">أفضل نتيجة</div>
-                <div class="stat-value" id="bestScore">-</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">المدى</div>
-                <div class="stat-value" id="range">1-100</div>
+    <div class="container">
+        <div class="header-content">
+            <img src="https://i.postimg.cc/zvf2c47L/image.png" alt="Website Logo" class="logo">
+            <div class="breadcrumb">
+                <a href="https://arabcomputers.com.sa/">Home</a> / <a href="https://arabcomputers.com.sa/check-sticker/">Check sticker</a>
             </div>
         </div>
 
-        <div class="message-area">
-            <div class="message" id="message">✨ خمن الرقم بين 1 و 100 ✨</div>
-            <div class="hint" id="hint"></div>
+            <h2>Warranty sticker validation</h2>
+
+        <p class="main-description">
+            Check if the warranty sticker on your product is genuine.<br>
+            تأكد إذا كان ملصق الضمان الموجود على منتجك هو ملصق أصلي أو مزيف
+          </p>
+ 
+            <span class="arabic-text">الشكل القديم </span>
+     
+        </p>
+
+        <img src="https://i.postimg.cc/1XhL17mC/Screenshot-20251026-022901.jpg" alt="Website Banner" class="banner">
+<p class="main-description">
+        <span class="arabic-text">الشكل الجديد</span>
+     
+        </p>
+
+        <img src="https://i.ibb.co/3m3r1TWK/Warranty-sticker-26.jpg" alt="Website Banner" class="banner">
+        
+        <p class="input-instruction">
+            Enter the number shown on the sticker in this box<br>
+            أدخل الرقم الموجود على الملصق هنا   
+        </p>
+
+
+        <div class="input-container">
+            <input type="text" id="numberInput" placeholder="XXXXXX">
+            <button type="submit" onclick="validateForm(event)">Check</button>
+       
+            <button type="submit" onclick="validateForm(event)">Check</button>
         </div>
 
-        <div class="input-area">
-            <input type="number" id="guessInput" class="guess-input" placeholder="أدخل رقمك هنا..." min="1" max="100">
+        <!-- The result div is now here, right after the input container -->
+        <div id="result"></div>
+
+        <div class="warning-message">
+            <p class="warning-text-bold">
+                نحذر عملائنا الكرام من وجود ملصق ضمان مزور يحتوي على رمز إستجابة سريع يوجه المستخدمين لصفحة إلكترونية مزورة تشبه هذه الصفحة.<br>
+                يجب أن يكون عنوان الصفحة يتبع لعنوان موقعنا الرسمي:
+                <span class="warning-url"><a href="https://arabcomputers.com.sa/" style="color: #000000; text-decoration: none;">arabcomputers.com.sa/</a></span>
+            </p>
+            <p class="warning-text-normal">
+                <span class="notice-title">Important Notice to Our Valued Customers:</span>
+                 We would like to alert you to the presence of counterfeit warranty stickers featuring a QR code that directs users to a fraudulent website designed to imitate the official Arab Computers website.<br>
+            </p>
+        </div>
+    </div>
+    
+    <div class="bottom-buttons">
+        <button class="menu-button">☰</button>
+        <button class="home-button" onclick="window.location.href='https://arabcomputers.com.sa/'">
+            <svg class="home-icon" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </button>
+    </div>  
+
+    <div class="links">
+        <div class="left-section">
+            <div>
+                <img src="https://i.postimg.cc/SKC7Wqhm/Screenshot-com-android-chrome.png" alt="بانر الموقع" class="banner" style="margin-bottom: 20px;"> <!-- إضافة مسافة تحت الصورة -->
+            </div>
         </div>
 
-        <div class="buttons">
-            <button class="btn-guess" onclick="makeGuess()">🔍 خمن</button>
-            <button class="btn-reset" onclick="resetGame()">🔄 لعبة جديدة</button>
+        <!-- Useful Links Section -->
+        <div class="links-section">
+            <h2>Useful Links</h2>
+            <div class="links-grid">
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/">Home</a></div>
+                    <div class="link-right"><strong><a href="https://arabcomputers.com.sa/dpp/" style="color: #333; text-decoration: none;">DPP</a></strong></div>
+                </div>
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/point-of-sales/">Point Of Sales</a></div>
+                    <div class="link-right"></div>
+                </div>
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/contact/">Contact Us</a></div>
+                    <div class="link-right"></div>
+                </div>
+            </div>
         </div>
 
-        <div class="history">
-            <div class="history-title">📝 سجل المحاولات</div>
-            <ul class="history-list" id="historyList">
-                <li style="text-align: center; color: #999;">لا توجد محاولات بعد</li>
-            </ul>
+        <!-- Products Section -->
+        <div class="links-section">
+            <h2>Products</h2>
+            <div class="links-grid">
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/product-category/iphone/">iPhone</a></div>
+                    <div class="link-right"><a href="https://arabcomputers.com.sa/product-category/ipad/">iPad</a></div>
+                </div>
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/product-category/mac/">Mac</a></div>
+                    <div class="link-right"><a href="https://arabcomputers.com.sa/product-category/apple-tv/">Apple TV</a></div>
+                </div>
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/product-category/ipod/">iPod</a></div>
+                    <div class="link-right"><a href="https://arabcomputers.com.sa/product-category/apple-watch/">Apple Watch</a></div>
+                </div>
+            </div>
         </div>
-        <div class="range-info">
-            💡 نصيحة: الرقم بين 1 و 100
+
+        <!-- Information Section -->
+        <div class="links-section">
+            <h2>Information</h2>
+            <div class="links-grid">
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/apple-authorised-service-provider/">Learn How</a></div>
+                    <div class="link-right"><a href="https://arabcomputers.com.sa/terms-and-conditions/">Terms and condition</a></div>
+                </div>
+                <div class="link-row">
+                    <div class="link-left"><a href="https://arabcomputers.com.sa/apple-authorised-service-provider/">Service Providers</a></div>
+                    <div class="link-right"><a href="https://arabcomputers.com.sa/terms-and-conditions/">Condition</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support and Sales Section -->
+        <div class="links-section">
+            <h2>Support and Sales</h2>
+            <div class="contact-info">
+                <p><strong>For Maintenance:</strong></p>
+                <p><a href="https://ac-care.com.sa/">Visit AC-Care</a></p>
+                
+                <p><strong>For Individual Sales:</strong></p>
+                <p><a href="https://arabcomputers.com.sa/point-of-sales/">Point of Sales</a></p>
+                
+                <p><strong>For corporate or channels sales:</strong></p>
+                <p><a href="mailto:sales@arabcomputers.com.sa">sales@arabcomputers.com.sa</a></p>
+            </div>
         </div>
     </div>
 
     <script>
-        let secretNumber = null;
-        let attempts = 0;
-        let bestScore = localStorage.getItem('bestScore') ? parseInt(localStorage.getItem('bestScore')) : null;
-        let guessHistory = [];
-
-        // Initialize game
-        function initGame() {
-            secretNumber = Math.floor(Math.random() * 100) + 1;
-            attempts = 0;
-            guessHistory = [];
-            updateAttemptsDisplay();
-            updateMessage('✨ خمن الرقم بين 1 و 100 ✨', '');
-            updateHistoryDisplay();
-            document.getElementById('guessInput').value = '';
-            document.getElementById('guessInput').disabled = false;
-            document.querySelector('.btn-guess').disabled = false;
-            
-            if (bestScore) {
-                document.getElementById('bestScore').textContent = bestScore;
-            } else {
-                document.getElementById('bestScore').textContent = '-';
+        // دالة تجزئة سريعة وفعالة
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // تحويل إلى عدد صحيح 32 بت
             }
+            return Math.abs(hash).toString(16);
+        }
+
+        // قاعدة بيانات الرموز باستخدام التجزئة
+        const codeDatabase = {};
+
+        // تحميل الرموز على دفعات
+        async function loadCodesInBatches() {
+            console.log("بدء تحميل الرموز...");
+
             
-            console.log('Secret number (for testing):', secretNumber); // يمكن إزالة هذا السطر في الإصدار النهائي
-        }
+            // تقسيم الرموز إلى دفعات (يمكنك إضافة المزيد من الرموز هنا)
+            const batches = [
+                // الدفعة 1 - الرموز الأصلية من الكود
+           ["U72S7HDZ719","1TEHZ9945D9",
+"2RVSX23KEV",
+"1CQ1XI9EKO",
+"5U1DXK4KH0",
+"7TQFXY9I84",
+"3NT8XX3FS5",
+"6ZRBXE6YIS",
+"3KLWXX0NUU",
+"3JCNX32W38",
+"2W76XA3TFV",
+"7GZ3XG1YG0",
+"9SXFXR3XPO",
+"8MZMXL3XTP",
+"0AD2X36BDS",
+"3FX7XB2FTQ",
+"7HYQX69ITX",
+"8VVGXZ9UBC",
+"8EA0XT2PYD",
+"1XGNXQ6UO9",
+"9M1XXD3IMV",
+"3FJDXM3IOQ",
+"4K2RXE1HAV",
+"0XU2XA9Q50",
+"3SY7X03U99",
+"2WHTX87MHV",
+"6ABRXA3UF2",
+"4K6FXX7PLT",
+"5LQFXS1HSA",
+"3P90XJ9I9Y",
+"7GUOXS4LYY",
+"4TPIXK8D8L",
+"7FH7XY5LIH",
+"2CS9XC5NWM",
+"0KB8X47GO8",
+"7JCUXV4YQW",
+"7N51X02RQR",
+"8FY0XU3NZZ",
+"1UW9X25AHE",
+"3SGLXD4Q08",
+"8QEGX90XHP",
+"6SKUX92QXH",
+"6ER6XI8HFH",
+"2T20XN5PYF",
+"0YCFXM2W0K",
+"3WQDXH4MW8",
+"5CFPXY9MV4",
+"6D6LXD4VH9",
+"2GB1XS9J73",
+"9VIJXA4YU8",
+"9DNKXY4BW9",
+"1CZMXD6HR2",
+"1SPUXW4RIA",
+"4U22XF6W5T",
+"7HSQXM3T3B",
+"0KRGXM1TYL",
+"5EQ4XJ4FYS",
+"8N1QX67B40",
+"4MLYX42AOW",
+"6U92XB7H24",
+"6ZQQXF0LD0",
+"1D0XXP2LAN",
+"8P6RXR1NK1",
+"1KJSXP3Y04",
+"0OP8XZ4IVJ",
+"1E6TXU8E6Q",
+"1RWIXS2CJN",
+"4EIPX09AFX",
+"6FLYXR2SDH",
+"4H9SXV4TE0",
+"7RZ4XZ2IBU",
+"5C9RX61DMT",
+"8QTJX19QR1",
+"1XJPXF8FP6",
+"9MWOX73M9Z",
+"3U5OXF8AOU",
+"U64ETBR37M",
+"A84KCE70FE",
+"36RUJ786DF",
+"56OLN932KZ",
+"B8JFQRZ4ER",]
+            ];
 
-        // Update attempts display
-        function updateAttemptsDisplay() {
-            document.getElementById('attempts').textContent = attempts;
-        }
-
-        // Update message
-        function updateMessage(message, hint = '') {
-            document.getElementById('message').textContent = message;
-            document.getElementById('hint').textContent = hint;
-        }
-
-        // Update history display
-        function updateHistoryDisplay() {
-            const historyList = document.getElementById('historyList');
-            if (guessHistory.length === 0) {
-                historyList.innerHTML = '<li style="text-align: center; color: #999;">لا توجد محاولات بعد</li>';
-                return;
-            }
+              let totalLoaded = 0;
             
-            historyList.innerHTML = guessHistory.map(item => {
-                let className = '';
-                let arrow = '';
-                if (item.type === 'high') {
-                    className = 'high';
-                    arrow = '⬆️';
-                } else if (item.type === 'low') {
-                    className = 'low';
-                    arrow = '⬇️';
-                } else {
-                    className = 'success';
-                    arrow = '🎉';
+            for (let i = 0; i < batches.length; i++) {
+                const batch = batches[i];
+                console.log(`جاري معالجة الدفعة ${i + 1} (${batch.length} رمز)`);
+                
+                for (const code of batch) {
+                    const hash = simpleHash(code);
+                    codeDatabase[hash] = true;
+                    totalLoaded++;
                 }
-                return `<li class="history-item ${className}">${arrow} ${item.value} - ${item.message}</li>`;
-            }).join('');
+                
+                // إعطاء فرصة للمتصفح لمعالجة الأحداث الأخرى
+                await new Promise(resolve => setTimeout(resolve, 10));
+            }
             
-            // Auto scroll to bottom
-            const historyContainer = document.querySelector('.history');
-            historyContainer.scrollTop = historyContainer.scrollHeight;
+            console.log(`✅ تم تحميل ${totalLoaded} رمز بنجاح`);
+            return totalLoaded;
         }
 
-        // Update best score
-        function updateBestScore() {
-            if (bestScore === null || attempts < bestScore) {
-                bestScore = attempts;
-                localStorage.setItem('bestScore', bestScore);
-                document.getElementById('bestScore').textContent = bestScore;
-                return true;
-            }
-            return false;
-        }
-
-        // Make a guess
-        function makeGuess() {
-            const input = document.getElementById('guessInput');
-            const guess = parseInt(input.value);
-            
-            // Validation
-            if (isNaN(guess) || guess < 1 || guess > 100) {
-                updateMessage('⚠️ الرجاء إدخال رقم صحيح بين 1 و 100 ⚠️', '');
-                input.value = '';
-                input.focus();
-                return;
-            }
-            
-            attempts++;
-            updateAttemptsDisplay();
-            
-            let message = '';
-            let hint = '';
-            let historyType = '';
-            let historyMessage = '';
-            
-            if (guess === secretNumber) {
-                // Winner!
-                message = `🎉 مبروك! لقد فزت! 🎉 الرقم كان ${secretNumber}`;
-                hint = `لقد استخدمت ${attempts} محاولة${attempts > 1 ? 'ات' : ''}`;
-                historyType = 'success';
-                historyMessage = `🎉 نجاح! الرقم ${guess} صحيح! 🎉`;
-                updateMessage(message, hint);
-                
-                // Update best score
-                const isNewRecord = updateBestScore();
-                if (isNewRecord && attempts === bestScore) {
-                    updateMessage(message, `🏆 رقم قياسي جديد! ${attempts} محاولة${attempts > 1 ? 'ات' : ''} 🏆`);
-                }
-                
-                // Disable input and button
-                document.getElementById('guessInput').disabled = true;
-                document.querySelector('.btn-guess').disabled = true;
-                
-                // Add celebration effect
-                celebrate();
-                
-            } else if (guess > secretNumber) {
-                message = '📈 الرقم كبير جداً!';
-                hint = `جرب رقماً أصغر من ${guess}`;
-                historyType = 'high';
-                historyMessage = `📈 ${guess} - كبير جداً`;
-                updateMessage(message, hint);
-            } else {
-                message = '📉 الرقم صغير جداً!';
-                hint = `جرب رقماً أكبر من ${guess}`;
-                historyType = 'low';
-                historyMessage = `📉 ${guess} - صغير جداً`;
-                updateMessage(message, hint);
-            }
-            
-            // Add to history
-            guessHistory.push({
-                value: guess,
-                type: historyType,
-                message: historyMessage
+        // بدء تحميل الرموز عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCodesInBatches().then(count => {
+                console.log(`جاهز للتحقق من ${count} رمز`);
             });
-            updateHistoryDisplay();
+        });
+
+        // دالة التحقق المُحسّنة
+        function validateForm(event) {
+            event.preventDefault();
+            const button = event.target;
+            const numberInput = document.getElementById("numberInput").value.trim().toUpperCase();
+            const resultElement = document.getElementById("result");
             
-            // Clear input and focus
-            input.value = '';
-            input.focus();
-        }
-        
-        // Celebration effect
-        function celebrate() {
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9'];
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.innerHTML = ['🎉', '🎊', '✨', '🌟', '💫', '🎈'][Math.floor(Math.random() * 6)];
-                particle.style.position = 'fixed';
-                particle.style.left = Math.random() * window.innerWidth + 'px';
-                particle.style.top = '-20px';
-                particle.style.fontSize = (Math.random() * 20 + 20) + 'px';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '9999';
-                particle.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
-                document.body.appendChild(particle);
+            button.classList.add('pressed');
+            resultElement.className = '';
+            resultElement.textContent = '';
+
+            const usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
+
+            setTimeout(() => {
+                // البحث باستخدام التجزئة - أسرع بكثير من البحث في المصفوفة
+                const inputHash = simpleHash(numberInput);
                 
-                setTimeout(() => {
-                    particle.remove();
-                }, 3000);
-            }
-        }
-        
-        // Add falling animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fall {
-                0% {
-                    transform: translateY(-20px) rotate(0deg);
-                    opacity: 1;
+                if (usedCodes.includes(numberInput)) {
+                    resultElement.textContent = "code is already used❌ تم استخدام هذا الرمز !";
+                    resultElement.className = 'error';
+                } else if (codeDatabase[inputHash]) {
+                    usedCodes.push(numberInput);
+                    localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
+                    resultElement.textContent = "The code is correct ✅ هذا الرمز صحيح!";
+                    resultElement.className = 'success';
+                } else {
+                    resultElement.textContent = "Code not found ❌ هذا الرمز غير موجود !";
+                    resultElement.className = 'error';
                 }
-                100% {
-                    transform: translateY(100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Reset game
-        function resetGame() {
-            initGame();
-            updateMessage('🔄 تم بدء لعبة جديدة! خمن الرقم بين 1 و 100 🔄', '');
+                
+                button.classList.remove('pressed');
+            }, 500);
         }
-        
-        // Add enter key support
-        document.getElementById('guessInput').addEventListener('keypress', function(e) {
+
+        // إضافة إمكانية استخدام زر Enter
+        document.getElementById('numberInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                makeGuess();
+                validateForm(e);
             }
         });
-        
-        // Initialize game on load
-        initGame();
     </script>
 </body>
-</html>
+</html>  
